@@ -44,31 +44,33 @@ client = OpenAI()
 
 # Define query_name
 # => Query name used to construct output text file name
-# query_name = 'shared_deg_down_dan_death_in_pd'
-# query_name = 'fora_sign_down_coc_div67_run1_2_exp_neg_enrich_in_pd_dan'
-# query_name = 'fora_sign_down_coc_div67_run1_2_set_description'
-query_name = 'fora_sign_down_coc_div67_run1_2_set_members'
+# query_name = 'deg_down_div67_129_involved_in_pd_dan_degeneration'
+query_name = 'deg_up_div67_129_involved_in_pd_dan_degeneration'
+# query_name = 'gs_fora_down_div67_involved_in_pd_dan_degeneration'
+# query_name = 'gs_fora_up_div67_involved_in_pd_dan_degeneration'
 
 # Define item_type
 # => Type of items contained in input list
-# item_type = 'gene symbol'
-item_type = 'MSigDB gene set'
+item_type = 'gene symbol'
+# item_type = 'MSigDB gene set'
 
 # Define item_list_path
 # => Path to user's query item list file (csv)
-# item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/shared_deg_down.csv'
-item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/fora_sign_down_coc_div67_run1_2.csv'
+# item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/deg_down_div67_129.csv'
+item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/deg_up_div67_129.csv'
+# item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/gs_fora_down_div67.csv'
+# item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/gs_fora_up_div67.csv'
 
 # Define system_role
 system_role = 'researcher in molecular biology'
 
 # Define user_question
 # => User's question to be answered for every item in input list
+user_question = "Could it be involved in the neurodegeneration of Parkinson's disease dopaminergic neurons?"
 # user_question = "Is its transcription expected to be downregulated in dopaminergic neurons in Parkinson's disease?"
-# user_question = "Could it be involved in the neurodegeneration of dopaminergic neurons in Parkinson's disease?"
 # user_question = "Is it expected to be negatively enriched in Parkinson's disease vs control dopaminergic neurons as part of a gene set enrichment analysis?"
 # user_question = "Please give a description of this gene set"
-user_question = "Please lists the gene symbol included in this gene set"
+# user_question = "What are the gene symbols included in this gene set?"
 
 # Path to output directory
 # => Path to output directory where ChatGPTiiq results should be written to
@@ -232,6 +234,12 @@ for i in response.results:
 
 df = pd.DataFrame(df)
 
+df['question'] = user_question
+
+df['item_type'] = item_type
+
+df = df.loc[:, ['question', 'item_type', 'item', 'answer', 'explanation']]
+
 df['answer'] = df['answer'].astype('category') 
 
 exp_cat_order = ['Yes', 'No', 'Unknown']
@@ -287,6 +295,10 @@ print(output)
 
 # %% Write output to disk ----
 
+# Write dataframe output
+df.to_csv(''.join([out_dir_path, 'chatgptiiq_', query_name, '.csv']), index=False)
+
+# Write text output
 with open(''.join([out_dir_path, 'chatgptiiq_', query_name, '.txt']), 'w') as file:
   file.write(output)
 

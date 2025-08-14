@@ -45,17 +45,19 @@ client = OpenAI()
 # Define query_name
 # => Query name used to construct output text file name
 # query_name = 'shared_deg_down_dan_death_in_pd'
-query_name = 'shared_fora_down_exp_neg_enrich_in_pd'
+# query_name = 'fora_sign_down_coc_div67_run1_2_exp_neg_enrich_in_pd_dan'
+# query_name = 'fora_sign_down_coc_div67_run1_2_set_description'
+query_name = 'fora_sign_down_coc_div67_run1_2_set_members'
 
 # Define item_type
 # => Type of items contained in input list
 # item_type = 'gene symbol'
-item_type = 'mSigDB gene set'
+item_type = 'MSigDB gene set'
 
 # Define item_list_path
 # => Path to user's query item list file (csv)
 # item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/shared_deg_down.csv'
-item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/shared_fora_down.csv'
+item_list_path = 'data/ben/general/output/dge_gsea/compare_gsea_dge_zinbwave_deseq2/fora_sign_down_coc_div67_run1_2.csv'
 
 # Define system_role
 system_role = 'researcher in molecular biology'
@@ -64,7 +66,9 @@ system_role = 'researcher in molecular biology'
 # => User's question to be answered for every item in input list
 # user_question = "Is its transcription expected to be downregulated in dopaminergic neurons in Parkinson's disease?"
 # user_question = "Could it be involved in the neurodegeneration of dopaminergic neurons in Parkinson's disease?"
-user_question = "Is it expected to be negatively enriched in Parkinson's disease vs control condition as part of a gene set enrichment analysis?"
+# user_question = "Is it expected to be negatively enriched in Parkinson's disease vs control dopaminergic neurons as part of a gene set enrichment analysis?"
+# user_question = "Please give a description of this gene set"
+user_question = "Please lists the gene symbol included in this gene set"
 
 # Path to output directory
 # => Path to output directory where ChatGPTiiq results should be written to
@@ -76,8 +80,8 @@ model = 'gpt-5'
 
 # Define method
 # => Method to be used for ChatGPT request
-# method = 'client.chat.completions.parse'
-method = 'client.responses.parse'
+method = 'client.chat.completions.parse'
+# method = 'client.responses.parse'
 
 # %% Check analysis parameter validity ----
 

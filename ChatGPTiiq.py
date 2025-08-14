@@ -1,3 +1,11 @@
+# %% File description ----
+
+# ChatGPTiiq.py performs ChatGPT-powered iterative item questioning.
+
+# => Asks a user-defined question for every item in a user-supplied list. 
+# - All items should represent possible values of the same concept, which can be anything (e.g: 'gene symbol', 'MSigDB gene set')
+# - The question should be consistent with the concept the items represent. Ideally, it should be one that can be answered by 'yes' or 'no' (e.g: 'Is it involved in Parkinson's disease?')
+ 
 # %% Define paths ----
 
 # ==> To be set by user <==

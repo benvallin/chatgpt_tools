@@ -1,8 +1,8 @@
 # %% File description ----
 
-# ChatGPTiiq.py performs ChatGPT-powered iterative item questioning.
+# ChatGPTbq.py performs ChatGPT-powered bulk questioning.
 
-# => Asks a user-defined question for every item in a user-supplied list. 
+# => Asks ChatGPT a user-defined question for every item in a user-supplied list. 
 # - All items should represent possible values of the same concept, which can be anything (e.g: 'gene symbol', 'MSigDB gene set')
 # - The question should be consistent with the concept the items represent. Ideally, it should be one that can be answered by 'yes' or 'no' (e.g: 'Is it involved in Parkinson's disease?')
  
@@ -253,7 +253,7 @@ df['answer'] = df['answer'].cat.reorder_categories(new_cat_order)
 df = df.sort_values(by=['answer', 'item'])
 
 # Build text output
-output = '\n'.join(['*** ChatGPTiiq results ***\n',  
+output = '\n'.join(['*** ChatGPTbq results ***\n',  
                     f'GPT model: {model} / Method: {method}\n',
                     f'Item list path: {item_list_path}\n',
                     f'Item type: {item_type}\n',  

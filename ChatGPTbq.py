@@ -296,10 +296,10 @@ print(output)
 # %% Write output to disk ----
 
 # Write dataframe output
-df.to_csv(''.join([out_dir_path, 'chatgptiiq_', query_name, '.csv']), index=False)
+df.to_csv(''.join([out_dir_path, 'chatgptbq_', query_name, '.csv']), index=False)
 
 # Write text output
-with open(''.join([out_dir_path, 'chatgptiiq_', query_name, '.txt']), 'w') as file:
+with open(''.join([out_dir_path, 'chatgptbq_', query_name, '.txt']), 'w') as file:
   file.write(output)
 
 # %%
